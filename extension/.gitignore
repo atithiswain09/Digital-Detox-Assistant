@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+/dist/
+/build/
+
+# Log files
+logs/
+*.log
+
+# OS and Editor-specific files
+.DS_Store # macOS
+Thumbs.db # Windows
+.vscode/
+.idea/
+*.sublime-workspace
+*.swp
+.project
+.classpath
+
+# Environment variables
+.env
+.env.local

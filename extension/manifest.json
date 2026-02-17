@@ -19,20 +19,12 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ],
 
-  "permissions": [
-    "storage",
-    "activeTab",
-    "scripting"
-  ],
-
-  "host_permissions": [
-    "<all_urls>",
-    "https://api.yoursite.com/*"
-  ],
+  "permissions": ["storage", "activeTab", "scripting", "webNavigation"],
+  "host_permissions": ["<all_urls>", "https://api.domain.com/*"],
 
   "browser_specific_settings": {
     "gecko": {
