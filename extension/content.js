@@ -1,4 +1,7 @@
-// ===== BLOCK SCREEN HTML =====
+// ===== CONFIG =====
+const BLOCK_TEXT = "Site can't be open";
+
+// ===== BLOCK SCREEN =====
 const BLOCK_HTML = `
 <head>
   <title>Blocked</title>
@@ -14,87 +17,79 @@ const BLOCK_HTML = `
       justify-content: center;
       align-items: center;
       font-weight: 600;
-      font-size: larger;
+      font-size: x-large;
       color: white;
       font-family: system-ui, -apple-system, sans-serif;
     }
   </style>
 </head>
 <body>
-  <div>Site can't be open</div>
+  <div>${BLOCK_TEXT}</div>
 </body>
 `;
 
-// ===== HELPERS =====
-function hostnameMatches(hostname, domain) {
-  return hostname === domain || hostname.endsWith("." + domain);
+// ===== HELPER =====
+function alreadyBlocked() {
+  return document.documentElement.innerHTML.includes(BLOCK_TEXT);
 }
 
-async function getBlockedSites() {
-  return new Promise((resolve) => {
-    try {
-      chrome.storage.local.get("blockedSites", (data) => {
-        resolve(data.blockedSites || []);
-      });
-    } catch {
-      resolve([]);
-    }
+function isBlocked(hostname, blockedSites) {
+  return blockedSites.some((d) => {
+    if (!d || !d.includes(".")) return false;
+    return hostname === d || hostname.endsWith("." + d);
   });
 }
 
-function isBlocked(hostname, blockedList) {
-  return blockedList.some((d) => hostnameMatches(hostname, d));
-}
+function blockPage() {
+  if (alreadyBlocked()) return;
 
-// ===== HARD BLOCK =====
-(async () => {
-  const blockedSites = await getBlockedSites();
-
-  let hostname;
-  try {
-    hostname = location.hostname;
-  } catch {
-    return;
-  }
-
-  if (!isBlocked(hostname, blockedSites)) return;
-
-  // 🔥 stop network ASAP
   try {
     window.stop();
   } catch {}
 
-  // 🔥 kill page repeatedly (handles race conditions)
-  const nuke = () => {
-    try {
-      document.documentElement.innerHTML = BLOCK_HTML;
-    } catch {}
-  };
+  try {
+    document.documentElement.innerHTML = BLOCK_HTML;
+  } catch {}
+}
 
-  nuke();
+(async () => {
+  const { blockedSites = [] } = await chrome.storage.local.get("blockedSites");
+  const hostname = location.hostname;
 
-  // multiple passes for stubborn sites
-  setTimeout(nuke, 0);
-  setTimeout(nuke, 50);
-  setTimeout(nuke, 250);
+  if (!isBlocked(hostname, blockedSites)) return;
 
-  // 🔥 observe and re-wipe if SPA tries to recover
+  // ===== MULTI-LAYER DEFENSE =====
+  blockPage();
+  setTimeout(blockPage, 0);
+  setTimeout(blockPage, 50);
+  setTimeout(blockPage, 250);
+
+  // ===== SPA DEFENSE =====
   const observer = new MutationObserver(() => {
-    if (!document.body?.innerText.includes("Site can't be open")) {
-      nuke();
+    if (!alreadyBlocked()) {
+      blockPage();
     }
   });
 
   try {
     observer.observe(document.documentElement, {
       childList: true,
-      subtree: true
+      subtree: true,
     });
   } catch {}
 
-  // 🔥 block further JS execution paths
-  Object.defineProperty(window, "fetch", { value: () => new Promise(() => {}) });
-  Object.defineProperty(window, "XMLHttpRequest", {
-    value: function () {}
-  });
+  // ===== NETWORK KILL SWITCH =====
+  try {
+    Object.defineProperty(window, "fetch", {
+      value: () => new Promise(() => {}),
+    });
+
+    Object.defineProperty(window, "XMLHttpRequest", {
+      value: function () {},
+    });
+
+    Object.defineProperty(navigator, "sendBeacon", {
+      value: () => false,
+    });
+  } catch {}
 })();

@@ -1,7 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+
   "manifest_version": 3,
 
-  "name": "Minimal Behavior Analytics Tracker",
+  "name": "Behavior Analytics Tracker",
   "version": "1.0.0",
   "description": "Tracks anonymized user behavior on visited pages for analytics purposes.",
 
@@ -23,7 +25,14 @@
     }
   ],
 
-  "permissions": ["storage", "activeTab", "scripting", "webNavigation"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "webNavigation",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
   "host_permissions": ["<all_urls>", "https://api.domain.com/*"],
 
   "browser_specific_settings": {

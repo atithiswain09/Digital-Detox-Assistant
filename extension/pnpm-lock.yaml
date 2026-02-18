@@ -14,6 +14,10 @@ importers:
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
+    devDependencies:
+      '@types/chrome':
+        specifier: ^0.1.36
+        version: 0.1.36
 
 packages:
 
@@ -213,6 +217,18 @@ packages:
   '@tailwindcss/oxide@4.1.18':
     resolution: {integrity: sha512-EgCR5tTS5bUSKQgzeMClT6iCY3ToqE1y+ZB0AKldj809QXk1Y+3jB0upOYZrn9aGIzPtUsP7sX4QQ4XtjBB95A==}
     engines: {node: '>= 10'}
+
+  '@types/chrome@0.1.36':
+    resolution: {integrity: sha512-BvHbuyGttYXnGt5Gpwa4769KIinKHY1iLjlAPrrMBS2GI9m/XNMPtdsq0NgQalyuUdxvlMN/0OyGw0shFVIoUQ==}
+
+  '@types/filesystem@0.0.36':
+    resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
+
+  '@types/filewriter@0.0.33':
+    resolution: {integrity: sha512-xFU8ZXTw4gd358lb2jw25nxY9QAgqn2+bKKjKOYfNCzN4DKCFetK7sPtrlpg66Ywe3vWY9FNxprZawAh9wfJ3g==}
+
+  '@types/har-format@1.2.16':
+    resolution: {integrity: sha512-fluxdy7ryD3MV6h8pTfTYpy/xQzCFC7m89nOH9y94cNqJ1mDIDPut7MnRHI3F6qRmh/cT2fUjG1MLdCNb4hE9A==}
 
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
@@ -490,6 +506,19 @@ snapshots:
       '@tailwindcss/oxide-wasm32-wasi': 4.1.18
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.18
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.18
+
+  '@types/chrome@0.1.36':
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.16
+
+  '@types/filesystem@0.0.36':
+    dependencies:
+      '@types/filewriter': 0.0.33
+
+  '@types/filewriter@0.0.33': {}
+
+  '@types/har-format@1.2.16': {}
 
   detect-libc@2.1.2: {}
 
