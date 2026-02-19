@@ -13,7 +13,7 @@
   "packageManager": "pnpm@10.30.0",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.2.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.36"
