@@ -1,3 +1,5 @@
+let currentSite = null; //which site is Created
+let startTime = null;   //what timer start 
 // ================= CONFIG =================
 const DEFAULT_BLOCKED = [
   "x.com",
@@ -9,7 +11,7 @@ const DEFAULT_BLOCKED = [
 
 const RULESET_ID_BASE = 1000;
 
-// ================= HELPERS =================
+
 /**
  * @param {number} id
  * @param {string} domain
@@ -34,7 +36,7 @@ function isBlocked(hostname, blockedSites) {
   });
 }
 
-// ================= INIT =================
+
 chrome.runtime.onInstalled.addListener(async () => {
   const { blockedSites } = await chrome.storage.local.get("blockedSites");
 
@@ -42,3 +44,26 @@ chrome.runtime.onInstalled.addListener(async () => {
     await chrome.storage.local.set({ blockedSites: DEFAULT_BLOCKED });
   }
 });
+
+chrome.tabs.onActivated.addListener(async (activeInfo) => {
+  const tab = await chrome.tabs.get(activeInfo.tabId);
+  handleSiteChange(tab);
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete") {
+    handleSiteChange(tab);
+  }
+});
+
+async function handleSiteChange(tab) {
+  if (!tab.url) return;
+
+  const url = new URL(tab.url);
+  const newSite = url.hostname;
+  const now = Date.now();
+
+  console.log("New site opened:", newSite);
+
+  
+}
