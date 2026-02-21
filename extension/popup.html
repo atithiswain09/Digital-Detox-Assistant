@@ -7,8 +7,156 @@
     <link href="./styles/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="root">
-      <h3 class="w-full">Behavior Tracker Active</h3>
+    <div id="root" class="w-xs p-2">
+      <header
+        class="w-full pb-2 flex justify-between border-b border-gray-500/40"
+      >
+        <div class="left font-medium text-sm">
+          <span>Behavior Analytics Tracker</span>
+        </div>
+        <div class="right flex gap-2">
+          <button class="cursor-pointer">
+            <img
+              class="w-4 h-4 select-none"
+              draggable="false"
+              src="public/icons/gear.svg"
+              alt="settings"
+            />
+          </button>
+          <button class="cursor-pointer">
+            <img
+              class="w-4 h-4 select-none"
+              draggable="false"
+              src="public/icons/xmark.svg"
+              alt="xmark"
+            />
+          </button>
+        </div>
+      </header>
+      <main>
+        <div class="welcome font-medium text-sm py-2">
+          <span>Hello, Bro!</span>
+        </div>
+        <section
+          class="today-usage p-2 w-full rounded-md border border-gray-400/50 flex flex-col gap-2 mb-2"
+        >
+          <div class="title text-xs font-medium">
+            <span>Today's Usage:</span>
+          </div>
+          <div class="time flex justify-between items-end">
+            <div class="left flex items-center gap-1">
+              <img
+                class="w-5 select-none"
+                draggable="false"
+                src="public/icons/clock.svg"
+                alt="clock"
+              />
+              <span class="text-lg font-bold">2h 15m</span>
+              <span class="text-sm font-light">Online</span>
+            </div>
+            <div class="right text-tiny">
+              <span>Limit: 1h 30m</span>
+            </div>
+          </div>
+          <div class="bar">
+            <div
+              class="relative flex items-center max-w-80 w-full bg-gray-500/20 h-2 rounded-full"
+            >
+              <div
+                class="bg-blue-600 h-full rounded-full"
+                style="width: 66%"
+              ></div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="blocked-sites p-2 w-full rounded-md border border-gray-400/50 flex flex-col gap-2 mb-2"
+        >
+          <div class="title text-xs font-medium">
+            <span>Blocked Sites:</span>
+          </div>
+          <div class="sites">
+            <ul class="text-xs flex flex-col gap-1">
+              <li class="flex gap-1 items-center">
+                <img
+                  class="w-4 select-none"
+                  draggable="false"
+                  src="public/icons/cycle-xmark.svg"
+                  alt="cross-mark"
+                /><span>YouTube</span>
+              </li>
+              <li class="flex gap-1 items-center">
+                <img
+                  class="w-4 select-none"
+                  draggable="false"
+                  src="public/icons/cycle-xmark.svg"
+                  alt="cross-mark"
+                /><span>Instagram</span>
+              </li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            class="px-6 py-2 active:scale-95 transition duration-75 bg-gray-500/15 border border-gray-500/20 rounded text-blue-500 text-sm font-medium"
+          >
+            <span>Manage Block List</span>
+          </button>
+        </section>
+        <div class="flex gap-2 items-center mb-2">
+          <div class="title text-xs font-medium">
+            <span>Detox Mode:</span>
+          </div>
+          <label
+            class="relative inline-flex items-center cursor-pointer text-gray-900 gap-3"
+          >
+            <input type="checkbox" class="sr-only peer" checked />
+            <div
+              class="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"
+            ></div>
+            <span
+              class="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"
+            ></span>
+          </label>
+        </div>
+        <section class="w-full flex gap-2 justify-between mb-2">
+          <section class="w-full p-2 border border-gray-400/50 rounded-md">
+            <div class="title flex gap-1 items-center text-sm font-medium">
+              <img
+                class="w-4 select-none"
+                draggable="false"
+                src="public/icons/calendar-week.svg"
+                alt="calendar-week"
+              />
+              <span>Weekly Stats:</span>
+            </div>
+            <div class="w-full flex flex-col justify-center items-center">
+              <span class="text-lg font-medium">12h 45m</span>
+              <span class="text-xs">Total Screen Time</span>
+            </div>
+          </section>
+          <section class="w-full p-2 border border-gray-400/50 rounded-md">
+            <div class="title flex gap-1 items-center text-sm font-medium">
+              <img
+                class="w-4 select-none"
+                draggable="false"
+                src="public/icons/circle-dot.svg"
+                alt="calendar-week"
+              />
+              <span>Focus Score:</span>
+            </div>
+            <div class="w-full flex flex-col justify-center items-center">
+              <span class="text-lg font-medium">72%</span>
+              <span class="text-xs">Good Focus</span>
+            </div>
+          </section>
+        </section>
+        <button
+          type="button"
+          class="w-full px-6 py-2 active:scale-95 transition duration-75 bg-blue-500 rounded text-white text-sm font-medium"
+        >
+          View Dashboard
+        </button>
+      </main>
     </div>
   </body>
 </html>
