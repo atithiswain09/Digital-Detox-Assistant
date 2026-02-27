@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+venv/
+.env
+
+# Build / Output
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Lockfile
+**/package-lock.json
+**/yarn.lock
+**/bun.lockb

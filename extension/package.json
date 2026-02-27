@@ -1,0 +1,21 @@
+{
+  "name": "extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "popup:build": "npx @tailwindcss/cli -i ./styles/input.css -o ./styles/output.css",
+    "popup:build:watch": "npx @tailwindcss/cli -i ./styles/input.css -o ./styles/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.0",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.36"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+
+  "manifest_version": 3,
+
+  "name": "Behavior Analytics Tracker",
+  "version": "1.0.0",
+  "description": "Tracks anonymized user behavior on visited pages for analytics purposes.",
+
+  "action": {
+    "default_title": "Behavior Tracker",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "webNavigation",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": ["<all_urls>", "https://api.domain.com/*"],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "behavior-tracker@example.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}
