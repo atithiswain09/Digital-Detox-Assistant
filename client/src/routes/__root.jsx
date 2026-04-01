@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -14,41 +15,17 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/features", label: "Features", dropdown: true },
-    { to: "/pricing", label: "Pricing" },
-    { to: "/resources", label: "Resources", dropdown: true },
-  ];
-
   return (
     <React.Fragment>
       <TooltipProvider>
         <ThemeProvider>
+          <div
+            className="absolute inset-0 dark:bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] 
+            bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-size-[3rem_3rem] 
+            mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] h-full dark:opacity-10 opacity-20"
+          />
           <div className="h-screen w-full flex flex-col">
-            <header className="fixed w-full">
-              <div className="p-4 absolute left-1/2 -translate-x-1/2 w-full">
-                <nav className="p-2 w-full backdrop-blur-xs bg-white/30 dark:bg-gray-900/30 md:w-4/5 lg:w-2/3 mx-auto flex justify-between border rounded-lg">
-                  <div className="flex gap-6">
-                    <Shield className="h-8 w-8 p-1" />
-                    <div className="hidden md:flex gap-2">
-                      {navLinks.map(({ to, label, dropdown }) => (
-                        <Button key={to} asChild variant="link">
-                          <Link to={to} className="flex gap-1 items-center">
-                            {label} {dropdown && <ChevronDown />}
-                          </Link>
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <ThemeToggle className="hidden sm:flex" />
-                    <Menu className="block md:hidden h-8 w-8 p-1" />
-                  </div>
-                </nav>
-              </div>
-            </header>
-            <div className="w-full m-10"></div>
+            <Navbar />
             <main className="p-4 flex-1">
               <Outlet />
             </main>

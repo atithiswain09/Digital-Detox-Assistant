@@ -5,5 +5,11 @@ export const Route = createLazyFileRoute("/")({
 });
 
 function RouteComponent() {
-  return <div className="text-center">Hello Home Page, it's a test of look</div>;
+  return (
+    <div className="text-center">
+      {Array.from({ length: 200 }).map((_, idx) => (
+        <p key={idx}>Hello Home Page, it's a test of look</p>
+      ))}
+    </div>
+  );
 }

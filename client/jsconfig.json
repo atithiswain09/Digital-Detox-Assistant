@@ -2,13 +2,13 @@
   "$schema": "https://json.schemastore.org/jsconfig",
 
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
