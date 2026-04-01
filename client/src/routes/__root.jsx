@@ -1,4 +1,5 @@
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/layout/navbar";
+import { GridBackground } from "@/components/shared/GridBackground";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -19,14 +20,10 @@ function RootComponent() {
     <React.Fragment>
       <TooltipProvider>
         <ThemeProvider>
-          <div
-            className="absolute inset-0 dark:bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] 
-            bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-size-[3rem_3rem] 
-            mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] h-full dark:opacity-10 opacity-20"
-          />
+          <GridBackground className="pointer-events-none" />
           <div className="h-screen w-full flex flex-col">
             <Navbar />
-            <main className="p-4 flex-1">
+            <main className="px-4 flex-1">
               <Outlet />
             </main>
           </div>

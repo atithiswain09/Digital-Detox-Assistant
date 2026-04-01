@@ -15,10 +15,10 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import * as React from "react";
 import { useCallback, useMemo, useState } from "react";
-import { ThemeToggle } from "./theme-toggle";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { FlickeringGrid } from "./ui/flickering-grid";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -26,7 +26,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "./ui/navigation-menu";
+} from "@/components/ui/navigation-menu";
 
 /* =========================================================
    Constants
@@ -281,8 +281,6 @@ export default function Navbar() {
           </section>
         </div>
       </header>
-
-      <div className="w-full mb-20" />
     </>
   );
 }
