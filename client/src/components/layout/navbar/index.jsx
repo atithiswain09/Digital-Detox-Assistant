@@ -1,5 +1,4 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useScrollLock } from "@/hooks/use-scroll-lock";
 import { Link } from "@tanstack/react-router";
 import {
   ChartArea,
@@ -11,10 +10,8 @@ import {
   ShieldOff,
   X,
 } from "lucide-react";
-// eslint-disable-next-line no-unused-vars
-import { AnimatePresence, motion } from "motion/react";
 import * as React from "react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,6 +24,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { Suspense } from "react";
+
+const MotionMenu = React.lazy(() => import("./menu-animation"));
 
 /* =========================================================
    Constants
@@ -156,43 +156,6 @@ const FeatureHighlightCard = () => (
 );
 
 /* =========================================================
-   Menu
-========================================================= */
-
-function Menu({ isMenuOpen }) {
-  useScrollLock(isMenuOpen);
-  const navLinks = useMemo(
-    () => [
-      { to: "/", label: "Home" },
-      { to: "/features", label: "Features", dropdown: true },
-      { to: "/pricing", label: "Pricing" },
-      { to: "/resources", label: "Resources", dropdown: true },
-    ],
-    [],
-  );
-
-  return (
-    <AnimatePresence>
-      {isMenuOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="overflow-hidden w-full max-h-96 py-4"
-        >
-          {navLinks.map((link) => (
-            <div className="px-4 py-2" key={link.to}>
-              <Link to={link.to}>{link.label}</Link>
-            </div>
-          ))}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
-/* =========================================================
    Main Navbar
 ========================================================= */
 
@@ -277,7 +240,9 @@ export default function Navbar() {
                 </Button>
               </div>
             </div>
-            {isMobile && <Menu isMenuOpen={isMenuOpen} />}
+            <Suspense fallback={null}>
+              {isMobile && <MotionMenu isMenuOpen={isMenuOpen} />}
+            </Suspense>
           </section>
         </div>
       </header>

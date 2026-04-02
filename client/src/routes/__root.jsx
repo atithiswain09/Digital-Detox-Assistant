@@ -1,11 +1,15 @@
-import Navbar from "@/components/layout/navbar";
-import { GridBackground } from "@/components/shared/GridBackground";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { NotFoundError } from "@/features/errors/not-found-error";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import React from "react";
+import { Suspense } from "react";
+
+const Navbar = React.lazy(() => import("@/components/layout/navbar"));
+const GridBackground = React.lazy(
+  () => import("@/components/shared/GridBackground"),
+);
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -17,9 +21,11 @@ function RootComponent() {
     <React.Fragment>
       <TooltipProvider>
         <ThemeProvider>
-          <GridBackground className="pointer-events-none" />
+          <GridBackground />
           <div className="h-screen w-full flex flex-col">
-            <Navbar />
+            <Suspense fallback={null}>
+              <Navbar />
+            </Suspense>
             <main className="px-4 flex-1">
               <Outlet />
             </main>
