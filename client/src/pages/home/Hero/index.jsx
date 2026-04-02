@@ -7,9 +7,9 @@ export function Hero() {
     <section className="h-full">
       <div className="w-full h-full flex justify-center items-center">
         <div className="flex justify-center text-center flex-col">
-          <h1 class="w-full text-center py-6 font-heading font-semibold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-balance tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:px-40">
+          <h1 className="w-full text-center py-6 font-heading font-semibold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-balance tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:px-40">
             Take Control of Your Digital{" "}
-            <span class="inline-block bg-linear-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
+            <span className="inline-block bg-linear-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
               Health
             </span>
           </h1>

@@ -1,13 +1,10 @@
 import Navbar from "@/components/layout/navbar";
 import { GridBackground } from "@/components/shared/GridBackground";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { NotFoundError } from "@/features/errors/not-found-error";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { ChevronDown, Menu, Shield } from "lucide-react";
 import React from "react";
 
 export const Route = createRootRoute({
