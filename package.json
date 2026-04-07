@@ -1,0 +1,23 @@
+{
+  "name": "digital-detox-assistant",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "node scripts/only-pnpm.js",
+    "prepare": "husky install"
+  },
+  "engines": {
+    "node": ">=22.11.0",
+    "pnpm": ">=10.30.1"
+  },
+  "packageManager": "pnpm@10.30.1",
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    ".env": "link:.env",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.2"
+  }
+}
