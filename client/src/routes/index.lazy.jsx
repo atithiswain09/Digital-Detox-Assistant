@@ -17,7 +17,7 @@ function RouteComponent() {
     <>
       <GridBackground />
       <Hero />
-      <Gap className="h-10 md:h-20 lg:h-30" />
+      <Gap className="h-10 md:h-20 lg:h-40" />
       <Features />
     </>
   );

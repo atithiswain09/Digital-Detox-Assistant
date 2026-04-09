@@ -1,6 +1,10 @@
 import React from "react";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { ShieldX, ClockIcon, ChartBarIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import { StripedPattern } from "@/components/magicui/striped-pattern";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 const features = [
   {
@@ -9,12 +13,32 @@ const features = [
     description:
       "Easily block distracting websites, either permanently or on a schedule.",
     className: "col-span-3 sm:col-span-1",
+    background: (
+      <AnimatedGridPattern
+        numSquares={30}
+        maxOpacity={0.1}
+        duration={3}
+        repeatDelay={1}
+        className={cn(
+          "mask-[radial-gradient(500px_circle_at_center,white,transparent)]",
+          "size-full inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+        )}
+      />
+    ),
   },
   {
     Icon: ClockIcon,
     name: "Track Your Screen Time",
     description: "Get insights into your daily screen time and usage habits.",
     className: "col-span-3 sm:col-span-1",
+    background: (
+      <DotPattern
+        glow={true}
+        className={cn(
+          "size-full mask-[radial-gradient(300px_circle_at_center,white,transparent)]",
+        )}
+      />
+    ),
   },
   {
     Icon: ChartBarIcon,
@@ -22,12 +46,20 @@ const features = [
     description:
       "Understand your patterns with clear, actionable data visualizations.",
     className: "col-span-3 sm:col-span-1",
+    background: (
+      <StripedPattern className="size-full opacity-30 stroke-[0.3] [stroke-dasharray:8,4]" />
+    ),
   },
 ];
 
 function CoreFeaturesGrid() {
   return (
-    <BentoGrid columns={{ base: 1, sm: 2, lg: 3 }} gap={6} autorows="200px" className="py-8">
+    <BentoGrid
+      columns={{ base: 1, sm: 2, lg: 3 }}
+      gap={6}
+      autorows="200px"
+      className="py-8"
+    >
       {features.map((feature, idx) => (
         <BentoCard
           key={idx}
@@ -35,7 +67,7 @@ function CoreFeaturesGrid() {
           name={feature.name}
           description={feature.description}
           className={feature.className}
-          background={null} // optional: you can add subtle background animations later
+          background={feature.background} // optional: you can add subtle background animations later
         />
       ))}
     </BentoGrid>
