@@ -21,12 +21,11 @@ function RootComponent() {
     <React.Fragment>
       <TooltipProvider>
         <ThemeProvider>
-          <GridBackground />
           <div className="h-screen w-full flex flex-col">
             <Suspense fallback={null}>
               <Navbar />
             </Suspense>
-            <main className="px-4 flex-1">
+            <main className="flex-1">
               <Outlet />
             </main>
           </div>

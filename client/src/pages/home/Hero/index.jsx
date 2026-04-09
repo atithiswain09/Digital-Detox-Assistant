@@ -1,11 +1,12 @@
 import { RainbowButton } from "@/components/ui/rainbow-button";
+import Rising from "@/components/ui/rising";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-export function Hero() {
+export default function Hero() {
   return (
-    <section className="h-full">
-      <div className="w-full h-full flex justify-center items-center">
+    <section className="min-h-screen w-full px-4 pt-20 flex justify-center items-center">
+      <div className="size-full relative flex justify-center items-center flex-col">
         <div className="flex justify-center text-center flex-col">
           <h1 className="w-full text-center py-6 font-heading font-semibold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-balance tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:px-40">
             Take Control of Your Digital{" "}
@@ -22,6 +23,7 @@ export function Hero() {
             </RainbowButton>
           </Link>
         </div>
+        <Rising className="absolute overflow-clip pt-0 top-30/25" />
       </div>
     </section>
   );

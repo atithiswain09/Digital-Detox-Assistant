@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import { memo } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const MotionDiv = motion.div;
 
@@ -18,6 +19,9 @@ function MotionWrapper({ navLinks }) {
           <Link to={link.to}>{link.label}</Link>
         </div>
       ))}
+      <div className="px-4 pt-2 pb-1">
+        <ThemeToggle className="w-full" />
+      </div>
     </MotionDiv>
   );
 }

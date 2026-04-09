@@ -1,5 +1,11 @@
-import { Hero } from "@/pages/home/Hero";
+import * as React from "react";
+import Hero from "@/pages/home/Hero";
 import { createLazyFileRoute } from "@tanstack/react-router";
+import Gap from "@/components/gap";
+
+const GridBackground = React.lazy(
+  () => import("@/components/shared/GridBackground"),
+);
 
 export const Route = createLazyFileRoute("/")({
   component: RouteComponent,
@@ -7,8 +13,11 @@ export const Route = createLazyFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <div className="h-screen pt-20">
+    <>
+      <GridBackground />
       <Hero />
-    </div>
+      <Gap className="h-10 md:h-20 lg:h-30" />
+      
+    </>
   );
 }
