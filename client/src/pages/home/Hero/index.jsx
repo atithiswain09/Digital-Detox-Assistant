@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen w-full px-4 pt-20 flex justify-center items-center">
+    <section className="min-h-screen w-full sm:pt-20 flex justify-center items-center">
       <div className="size-full relative flex justify-center items-center flex-col">
         <div className="flex justify-center text-center flex-col">
           <h1 className="w-full text-center py-6 font-heading font-semibold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent text-balance tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl lg:text-8xl lg:px-40">

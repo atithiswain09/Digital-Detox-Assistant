@@ -19,5 +19,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": ["fontsource", "shadcn", "xmark"]
+  "cSpell.words": ["autorows", "Bento", "fontsource", "shadcn", "xmark"]
 }
