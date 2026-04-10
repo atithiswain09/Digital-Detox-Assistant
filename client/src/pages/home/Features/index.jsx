@@ -45,7 +45,7 @@ const features = [
     name: "Visualize Your Habits",
     description:
       "Understand your patterns with clear, actionable data visualizations.",
-    className: "col-span-3 sm:col-span-1",
+    className: "col-span-3 sm:col-span-2 sm:col-start-1 lg:col-span-1",
     background: (
       <StripedPattern className="size-full opacity-30 stroke-[0.3] [stroke-dasharray:8,4]" />
     ),
@@ -55,10 +55,11 @@ const features = [
 function CoreFeaturesGrid() {
   return (
     <BentoGrid
-      columns={{ base: 1, sm: 2, lg: 3 }}
-      gap={6}
-      autorows="200px"
-      className="py-8"
+      className={cn(
+        "py-8",
+        "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+        "gap-6",
+      )}
     >
       {features.map((feature, idx) => (
         <BentoCard
@@ -76,7 +77,7 @@ function CoreFeaturesGrid() {
 
 const Features = () => {
   return (
-    <section className="mx-auto w-full max-w-full md:max-w-7xl px-4 md:px-12 lg:px-20 pt-10">
+    <section className="mx-auto w-full max-w-full md:max-w-7xl px-4 md:py-12 lg:py-20 pt-10">
       <div className="opacity-100 transform-none will-change-[opacity]">
         <div className="flex flex-col w-full items-center lg:items-center justify-center py-8">
           <div className="relative inline-flex h-8 overflow-hidden rounded-full p-[1.5px] focus:outline-none select-none">
