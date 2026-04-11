@@ -3,6 +3,8 @@ import Hero from "@/pages/home/Hero";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import Gap from "@/components/gap";
 import Features from "@/pages/home/Features";
+import AboutUs from "@/pages/home/About";
+import FooterCTA from "@/pages/home/FooterCTA";
 
 const GridBackground = React.lazy(
   () => import("@/components/shared/GridBackground"),
@@ -19,6 +21,8 @@ function RouteComponent() {
       <Hero />
       <Gap className="h-0 md:h-20 lg:h-40" />
       <Features />
+      <AboutUs />
+      <FooterCTA />
     </>
   );
 }

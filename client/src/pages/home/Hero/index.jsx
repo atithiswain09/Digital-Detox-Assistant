@@ -1,4 +1,4 @@
-import { RainbowButton } from "@/components/ui/rainbow-button";
+import { Button } from "@/components/ui/button";
 import Rising from "@/components/ui/rising";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
@@ -18,9 +18,9 @@ export default function Hero() {
             Manage screen time and reduce distractions for better focus.
           </p>
           <Link className="mx-auto" to="/auth/signup">
-            <RainbowButton className="w-fit px-10">
+            <Button className="w-fit px-10 py-4 font-medium rounded-sm cursor-pointer">
               Start Now <ArrowRight />
-            </RainbowButton>
+            </Button>
           </Link>
         </div>
         <Rising className="absolute overflow-clip pt-0 top-30/25" />
