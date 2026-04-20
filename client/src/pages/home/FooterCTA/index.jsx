@@ -5,8 +5,8 @@ import { ArrowRight } from "lucide-react";
 
 const FooterCTA = () => {
   return (
-    <section className="container mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-      <div className="relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden rounded-3xl z-0">
+    <section className="container mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24 overflow-clip">
+      <div className="relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-x-clip rounded-3xl z-0">
         <AmbientGradientGlow />
         <div className="relative z-50 flex -translate-y-48 flex-col items-center px-4 md:-translate-y-64">
           <div className="relative flex w-full flex-col items-center justify-center text-center">
@@ -18,7 +18,7 @@ const FooterCTA = () => {
             </p>
             <div className="mt-10">
               <Link to="/auth/signup">
-                <Button size="lg" className="h-12 px-8 text-base font-medium rounded-full cursor-pointer">
+                <Button size="lg" className="h-12 px-8 text-base font-medium rounded-sm cursor-pointer">
                   Start Now <ArrowRight className="ml-2 size-4" />
                 </Button>
               </Link>
