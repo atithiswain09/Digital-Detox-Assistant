@@ -23,4 +23,21 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  build: {
+    sourcemap: false, // Don't ship sourcemaps to production
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "zustand", "@tanstack/react-router"],
+          ui: ["lucide-react", "motion", "clsx", "tailwind-merge"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/test/setup.js',
+  },
 });
