@@ -23,7 +23,8 @@ export function ThemeProvider({
 }) {
   /** @type {[Theme, (theme: Theme) => void]} */
   const [theme, setTheme] = useState(
-    () => /** @type {Theme} */ (localStorage.getItem(storageKey)) || defaultTheme
+    () =>
+      /** @type {Theme} */ (localStorage.getItem(storageKey)) || defaultTheme,
   );
 
   useEffect(() => {

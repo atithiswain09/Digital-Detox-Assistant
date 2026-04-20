@@ -24,9 +24,9 @@ function RootComponent() {
     <React.Fragment>
       <TooltipProvider>
         <ThemeProvider>
-          <SEO 
-            title="Digital Detox Assistant" 
-            description="Your personal assistant for digital wellness and healthy tech habits." 
+          <SEO
+            title="Digital Detox Assistant"
+            description="Your personal assistant for digital wellness and healthy tech habits."
             keywords="digital detox, tech balance, wellness, focus, productivity"
           />
           <div className="h-screen w-full flex flex-col">

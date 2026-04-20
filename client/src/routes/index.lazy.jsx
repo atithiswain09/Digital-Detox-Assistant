@@ -18,9 +18,9 @@ export const Route = createLazyFileRoute("/")({
 function RouteComponent() {
   return (
     <>
-      <SEO 
-        title="Home" 
-        description="Welcome to Digital Detox Assistant - Your partner in digital wellness and productivity." 
+      <SEO
+        title="Home"
+        description="Welcome to Digital Detox Assistant - Your partner in digital wellness and productivity."
         keywords="digital detox, wellness, productivity, focus, digital health"
       />
       <GridBackground />

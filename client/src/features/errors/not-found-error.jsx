@@ -7,9 +7,9 @@ export function NotFoundError() {
   const { history } = useRouter();
   return (
     <div className="h-full">
-      <SEO 
-        title="404 - Page Not Found" 
-        description="The page you are looking for does not exist." 
+      <SEO
+        title="404 - Page Not Found"
+        description="The page you are looking for does not exist."
         keywords="404, not found, error"
       />
       <div className="m-auto flex h-full w-full flex-col items-center justify-center gap-2">

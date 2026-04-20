@@ -8,9 +8,9 @@ export const Route = createFileRoute("/dashboard/")({
 function RouteComponent() {
   return (
     <>
-      <SEO 
-        title="Dashboard" 
-        description="Access your digital detox dashboard to track your usage, set goals, and monitor your progress." 
+      <SEO
+        title="Dashboard"
+        description="Access your digital detox dashboard to track your usage, set goals, and monitor your progress."
         keywords="dashboard, statistics, usage tracking, goals, digital detox"
       />
       <div>Dashboard Page</div>

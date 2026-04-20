@@ -1,6 +1,6 @@
-import React, { useId } from "react"
+import React, { useId } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export function StripedPattern({
   direction = "left",
@@ -9,19 +9,20 @@ export function StripedPattern({
   height = 10,
   ...props
 }) {
-  const id = useId()
-  const w = Number(width)
-  const h = Number(height)
+  const id = useId();
+  const w = Number(width);
+  const h = Number(height);
 
   return (
     <svg
       aria-hidden="true"
       className={cn(
         "pointer-events-none absolute inset-0 z-10 h-full w-full stroke-[0.5]",
-        className
+        className,
       )}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+      {...props}
+    >
       <defs>
         <pattern id={id} width={w} height={h} patternUnits="userSpaceOnUse">
           {direction === "left" ? (

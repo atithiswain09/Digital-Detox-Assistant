@@ -8,9 +8,9 @@ export const Route = createLazyFileRoute("/dashboard")({
 function RouteComponent() {
   return (
     <div className="flex gap-1">
-      <SEO 
-        title="Dashboard" 
-        description="Your Digital Detox Dashboard" 
+      <SEO
+        title="Dashboard"
+        description="Your Digital Detox Dashboard"
         keywords="dashboard, stats, detox"
       />
       Hello <Outlet />

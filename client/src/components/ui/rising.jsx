@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils";
  */
 const Rising = ({ className }) => {
   return (
-    <div
-      className={cn("pointer-events-none w-full pt-12", className)}
-    >
+    <div className={cn("pointer-events-none w-full pt-12", className)}>
       <div
         data-slot="rising-small-illustration"
         className="relative w-full pt-[20%] overflow-x-clip bg-linear-to-b from-transparent from-20% to-background -z-10"

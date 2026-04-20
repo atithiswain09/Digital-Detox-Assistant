@@ -16,9 +16,9 @@ export function ErrorBoundary({ error, reset }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
-      <SEO 
-        title="Error - Something went wrong" 
-        description="An unexpected error occurred." 
+      <SEO
+        title="Error - Something went wrong"
+        description="An unexpected error occurred."
         keywords="error, boundary, crash"
       />
       <div className="w-full max-w-lg text-center">
@@ -27,7 +27,8 @@ export function ErrorBoundary({ error, reset }) {
           Something went wrong!
         </h1>
         <p className="text-muted-foreground mb-4 max-w-md mx-auto">
-          {error?.message || "An unexpected error occurred. Please try again or return to the home page."}
+          {error?.message ||
+            "An unexpected error occurred. Please try again or return to the home page."}
         </p>
         <div className="flex justify-center gap-4">
           <Button variant="outline" onClick={() => reset?.() || history.go(-1)}>

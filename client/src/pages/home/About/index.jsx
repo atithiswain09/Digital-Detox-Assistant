@@ -23,8 +23,12 @@ const AboutUs = () => {
               </span>
               <p className="text-base/normal tracking-wide py-4">
                 We help you take back your time from endless scrolling.
-                <span className="hidden md:inline">{" "}
-                  By tracking your screen habits, blocking distractions, and showing exactly where your attention goes, Digital Detox Assistant turns awareness into action—so you can focus on what actually matters.
+                <span className="hidden md:inline">
+                  {" "}
+                  By tracking your screen habits, blocking distractions, and
+                  showing exactly where your attention goes, Digital Detox
+                  Assistant turns awareness into action—so you can focus on what
+                  actually matters.
                 </span>
               </p>
               <span className="flex w-6 items-end">
