@@ -1,7 +1,6 @@
 import * as React from "react";
 import Hero from "@/pages/home/Hero";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import Gap from "@/components/gap";
 import Features from "@/pages/home/Features";
 import AboutUs from "@/pages/home/About";
 import FooterCTA from "@/pages/home/FooterCTA";
@@ -25,7 +24,6 @@ function RouteComponent() {
       />
       <GridBackground />
       <Hero />
-      <Gap className="h-0 md:h-20 lg:h-40" />
       <Features />
       <AboutUs />
       <FooterCTA />
