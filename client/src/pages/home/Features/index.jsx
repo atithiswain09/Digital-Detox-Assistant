@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { StripedPattern } from "@/components/magicui/striped-pattern";
 import { DotPattern } from "@/components/ui/dot-pattern";
+import { AnimatedGradientBadge } from "@/components/ui/animated-gradient-badge";
 
 const features = [
   {
@@ -13,6 +14,8 @@ const features = [
     description:
       "Easily block distracting websites, either permanently or on a schedule.",
     className: "col-span-3 sm:col-span-1",
+    href: "#",
+    cta: "Learn More",
     background: (
       <AnimatedGridPattern
         numSquares={30}
@@ -31,6 +34,8 @@ const features = [
     name: "Track Your Screen Time",
     description: "Get insights into your daily screen time and usage habits.",
     className: "col-span-3 sm:col-span-1",
+    href: "#",
+    cta: "Learn More",
     background: (
       <DotPattern
         glow={true}
@@ -46,6 +51,8 @@ const features = [
     description:
       "Understand your patterns with clear, actionable data visualizations.",
     className: "col-span-3 sm:col-span-2 sm:col-start-1 lg:col-span-1",
+    href: "#",
+    cta: "Learn More",
     background: (
       <StripedPattern className="size-full opacity-30 stroke-[0.3] [stroke-dasharray:8,4]" />
     ),
@@ -61,15 +68,8 @@ function CoreFeaturesGrid() {
         "gap-6",
       )}
     >
-      {features.map((feature, idx) => (
-        <BentoCard
-          key={idx}
-          Icon={feature.Icon}
-          name={feature.name}
-          description={feature.description}
-          className={feature.className}
-          background={feature.background} // optional: you can add subtle background animations later
-        />
+      {features.map((feature) => (
+        <BentoCard key={feature.name} {...feature} />
       ))}
     </BentoGrid>
   );
@@ -79,17 +79,15 @@ const Features = () => {
   return (
     <section className="container mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
       <div className="flex w-full flex-col items-center justify-center text-center">
-        <div className="relative inline-flex h-8 select-none overflow-hidden rounded-full p-[1.5px] focus:outline-none">
-          <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#6d28d9_0%,#d8b4fe_50%,#6d28d9_100%)]"></span>
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-4 py-1 text-sm font-medium text-foreground backdrop-blur-3xl">
-            Features
-          </span>
-        </div>
+        <AnimatedGradientBadge className="text-xl mb-4">
+          Features
+        </AnimatedGradientBadge>
         <h2 className="mt-6 font-heading text-3xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl">
           Why Choose Digital Detox Assistant?
         </h2>
         <p className="mt-4 max-w-2xl text-lg tracking-tight text-muted-foreground text-balance">
-          Discover tools designed to help you regain your focus and build healthier tech habits.
+          Discover tools designed to help you regain your focus and build
+          healthier tech habits.
         </p>
       </div>
       <div className="mt-12 md:mt-16">

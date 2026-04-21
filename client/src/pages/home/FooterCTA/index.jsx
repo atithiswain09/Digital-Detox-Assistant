@@ -11,14 +11,19 @@ const FooterCTA = () => {
         <div className="relative z-50 flex -translate-y-48 flex-col items-center px-4 md:-translate-y-64">
           <div className="relative flex w-full flex-col items-center justify-center text-center">
             <h2 className="mt-8 bg-linear-to-b from-neutral-200 to-neutral-500 bg-clip-text py-4 font-heading text-4xl font-semibold leading-[1.1] tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
-              Don’t let another hour <br className="hidden md:inline" /> slip away
+              Don’t let another hour <br className="hidden md:inline" /> slip
+              away
             </h2>
             <p className="mt-6 mx-auto max-w-lg text-balance text-lg tracking-tight text-muted-foreground">
-              Regain focus, cut the noise, and make this time count—starting right now
+              Regain focus, cut the noise, and make this time count—starting
+              right now
             </p>
             <div className="mt-10">
               <Link to="/auth/signup">
-                <Button size="lg" className="h-12 px-8 text-base font-medium rounded-sm cursor-pointer">
+                <Button
+                  size="lg"
+                  className="h-12 px-8 text-base font-medium rounded-sm cursor-pointer"
+                >
                   Start Now <ArrowRight className="ml-2 size-4" />
                 </Button>
               </Link>
