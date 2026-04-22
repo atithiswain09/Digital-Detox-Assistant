@@ -1,7 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { SEO } from "@/components/shared/SEO";
 
-export const Route = createLazyFileRoute("/about/")({
+export const Route = createLazyFileRoute("/(info)/about/")({
   component: RouteComponent,
 });
 

@@ -1,16 +1,16 @@
 import * as React from "react";
 import Hero from "@/pages/home/Hero";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import Features from "@/pages/home/Features";
 import AboutUs from "@/pages/home/About";
-import FooterCTA from "@/pages/home/FooterCTA";
 import { SEO } from "@/components/shared/SEO";
+// import FooterCTA from "@/pages/home/FooterCTA";
 
 const GridBackground = React.lazy(
   () => import("@/components/shared/GridBackground"),
 );
 
-export const Route = createLazyFileRoute("/")({
+export const Route = createFileRoute("/(info)/")({
   component: RouteComponent,
 });
 
@@ -25,8 +25,8 @@ function RouteComponent() {
       <GridBackground />
       <Hero />
       <Features />
+      {/* <FooterCTA /> */}
       <AboutUs />
-      <FooterCTA />
     </>
   );
 }

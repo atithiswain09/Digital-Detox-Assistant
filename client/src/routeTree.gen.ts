@@ -12,10 +12,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as infoIndexRouteImport } from './routes/(info)/index'
 
 const DashboardRouteLazyRouteImport = createFileRoute('/dashboard')()
-const IndexLazyRouteImport = createFileRoute('/')()
-const AboutIndexLazyRouteImport = createFileRoute('/about/')()
+const infoRouteLazyRouteImport = createFileRoute('/(info)')()
+const infoAboutIndexLazyRouteImport = createFileRoute('/(info)/about/')()
 
 const DashboardRouteLazyRoute = DashboardRouteLazyRouteImport.update({
   id: '/dashboard',
@@ -24,52 +25,66 @@ const DashboardRouteLazyRoute = DashboardRouteLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/dashboard/route.lazy').then((d) => d.Route),
 )
-const IndexLazyRoute = IndexLazyRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
-const AboutIndexLazyRoute = AboutIndexLazyRouteImport.update({
-  id: '/about/',
-  path: '/about/',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/about/index.lazy').then((d) => d.Route))
+const infoRouteLazyRoute = infoRouteLazyRouteImport
+  .update({
+    id: '/(info)',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+  .lazy(() => import('./routes/(info)/route.lazy').then((d) => d.Route))
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRouteLazyRoute,
 } as any)
+const infoIndexRoute = infoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => infoRouteLazyRoute,
+} as any)
+const infoAboutIndexLazyRoute = infoAboutIndexLazyRouteImport
+  .update({
+    id: '/about/',
+    path: '/about/',
+    getParentRoute: () => infoRouteLazyRoute,
+  } as any)
+  .lazy(() => import('./routes/(info)/about/index.lazy').then((d) => d.Route))
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
   '/dashboard': typeof DashboardRouteLazyRouteWithChildren
+  '/': typeof infoIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/about/': typeof AboutIndexLazyRoute
+  '/about/': typeof infoAboutIndexLazyRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
+  '/': typeof infoIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/about': typeof AboutIndexLazyRoute
+  '/about': typeof infoAboutIndexLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexLazyRoute
+  '/(info)': typeof infoRouteLazyRouteWithChildren
   '/dashboard': typeof DashboardRouteLazyRouteWithChildren
+  '/(info)/': typeof infoIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/about/': typeof AboutIndexLazyRoute
+  '/(info)/about/': typeof infoAboutIndexLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/dashboard/' | '/about/'
+  fullPaths: '/dashboard' | '/' | '/dashboard/' | '/about/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/dashboard' | '/about'
-  id: '__root__' | '/' | '/dashboard' | '/dashboard/' | '/about/'
+  id:
+    | '__root__'
+    | '/(info)'
+    | '/dashboard'
+    | '/(info)/'
+    | '/dashboard/'
+    | '/(info)/about/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
+  infoRouteLazyRoute: typeof infoRouteLazyRouteWithChildren
   DashboardRouteLazyRoute: typeof DashboardRouteLazyRouteWithChildren
-  AboutIndexLazyRoute: typeof AboutIndexLazyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -81,18 +96,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/(info)': {
+      id: '/(info)'
       path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about/': {
-      id: '/about/'
-      path: '/about'
-      fullPath: '/about/'
-      preLoaderRoute: typeof AboutIndexLazyRouteImport
+      fullPath: ''
+      preLoaderRoute: typeof infoRouteLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -102,8 +110,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRouteLazyRoute
     }
+    '/(info)/': {
+      id: '/(info)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof infoIndexRouteImport
+      parentRoute: typeof infoRouteLazyRoute
+    }
+    '/(info)/about/': {
+      id: '/(info)/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof infoAboutIndexLazyRouteImport
+      parentRoute: typeof infoRouteLazyRoute
+    }
   }
 }
+
+interface infoRouteLazyRouteChildren {
+  infoIndexRoute: typeof infoIndexRoute
+  infoAboutIndexLazyRoute: typeof infoAboutIndexLazyRoute
+}
+
+const infoRouteLazyRouteChildren: infoRouteLazyRouteChildren = {
+  infoIndexRoute: infoIndexRoute,
+  infoAboutIndexLazyRoute: infoAboutIndexLazyRoute,
+}
+
+const infoRouteLazyRouteWithChildren = infoRouteLazyRoute._addFileChildren(
+  infoRouteLazyRouteChildren,
+)
 
 interface DashboardRouteLazyRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -117,9 +153,8 @@ const DashboardRouteLazyRouteWithChildren =
   DashboardRouteLazyRoute._addFileChildren(DashboardRouteLazyRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
+  infoRouteLazyRoute: infoRouteLazyRouteWithChildren,
   DashboardRouteLazyRoute: DashboardRouteLazyRouteWithChildren,
-  AboutIndexLazyRoute: AboutIndexLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

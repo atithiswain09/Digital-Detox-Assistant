@@ -7,6 +7,7 @@ import React from "react";
 import { Suspense } from "react";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 import { SEO } from "@/components/shared/SEO";
+import Footer from "@/pages/home/Footer";
 
 const Navbar = React.lazy(() => import("@/components/layout/navbar"));
 const GridBackground = React.lazy(
@@ -29,14 +30,7 @@ function RootComponent() {
             description="Your personal assistant for digital wellness and healthy tech habits."
             keywords="digital detox, tech balance, wellness, focus, productivity"
           />
-          <div className="h-screen w-full flex flex-col">
-            <Suspense fallback={null}>
-              <Navbar />
-            </Suspense>
-            <main className="flex-1">
-              <Outlet />
-            </main>
-          </div>
+          <Outlet />
         </ThemeProvider>
       </TooltipProvider>
       {import.meta.env.MODE === "development" && (
