@@ -1,4 +1,4 @@
-import { useContext, createContext } from "react";
+import { createContext, useContext } from "react";
 
 /**
  * @typedef {"dark" | "light" | "system"} Theme
@@ -12,8 +12,8 @@ import { useContext, createContext } from "react";
 
 /** @type {ThemeProviderState} */
 const initialState = {
-  theme: "system",
-  setTheme: () => null,
+	theme: "system",
+	setTheme: () => null,
 };
 
 /** @type {import("react").Context<ThemeProviderState>} */
@@ -23,11 +23,11 @@ export const ThemeProviderContext = createContext(initialState);
  * @returns {ThemeProviderState}
  */
 export const useTheme = () => {
-  const context = useContext(ThemeProviderContext);
+	const context = useContext(ThemeProviderContext);
 
-  if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
+	if (context === undefined) {
+		throw new Error("useTheme must be used within a ThemeProvider");
+	}
 
-  return context;
+	return context;
 };

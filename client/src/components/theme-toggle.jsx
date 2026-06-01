@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { useTheme } from "@/hooks/use-theme";
 import { Moon, Sun } from "lucide-react";
 import { useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/use-theme";
 
 /**
  * Helper function to detect if the user prefers a dark color scheme.
  * @returns {boolean} True if the user prefers dark mode, false otherwise.
  */
 const prefersDarkMode = () =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
+	window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 /**
  * Props for the ThemeToggle component.
@@ -28,30 +28,30 @@ const prefersDarkMode = () =>
  * @returns {JSX.Element} A button that toggles between light and dark themes.
  */
 export function ThemeToggle({ ...props }) {
-  const { theme, setTheme } = useTheme();
+	const { theme, setTheme } = useTheme();
 
-  /**
-   * Toggles the theme between 'light' and 'dark'.
-   * If the theme is undefined, it uses the user's preferred color scheme.
-   */
-  const toggleTheme = useCallback(() => {
-    const newTheme =
-      theme === "dark"
-        ? "light"
-        : theme === "light"
-          ? "dark"
-          : prefersDarkMode()
-            ? "light"
-            : "dark";
+	/**
+	 * Toggles the theme between 'light' and 'dark'.
+	 * If the theme is undefined, it uses the user's preferred color scheme.
+	 */
+	const toggleTheme = useCallback(() => {
+		const newTheme =
+			theme === "dark"
+				? "light"
+				: theme === "light"
+					? "dark"
+					: prefersDarkMode()
+						? "light"
+						: "dark";
 
-    setTheme(newTheme);
-  }, [setTheme, theme]);
+		setTheme(newTheme);
+	}, [setTheme, theme]);
 
-  return (
-    <Button variant="outline" size="icon" onClick={toggleTheme} {...props}>
-      <Sun className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:rotate-90 dark:scale-0" />
-      <Moon className="h-[1.2rem] w-[1.2rem] absolute transition-all rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
+	return (
+		<Button variant="outline" size="icon" onClick={toggleTheme} {...props}>
+			<Sun className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:rotate-90 dark:scale-0" />
+			<Moon className="h-[1.2rem] w-[1.2rem] absolute transition-all rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+			<span className="sr-only">Toggle theme</span>
+		</Button>
+	);
 }

@@ -1,29 +1,29 @@
-import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { memo } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const MotionDiv = motion.div;
 
 function MotionWrapper({ navLinks }) {
-  return (
-    <MotionDiv
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: "auto", opacity: 1 }}
-      exit={{ height: 0, opacity: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="overflow-hidden w-full max-h-96 py-4 md:hidden"
-    >
-      {navLinks.map((link) => (
-        <div className="px-4 py-2" key={link.to}>
-          <Link to={link.to}>{link.label}</Link>
-        </div>
-      ))}
-      <div className="px-4 pt-2 pb-1">
-        <ThemeToggle className="w-full" />
-      </div>
-    </MotionDiv>
-  );
+	return (
+		<MotionDiv
+			initial={{ height: 0, opacity: 0 }}
+			animate={{ height: "auto", opacity: 1 }}
+			exit={{ height: 0, opacity: 0 }}
+			transition={{ duration: 0.3, ease: "easeInOut" }}
+			className="overflow-hidden w-full max-h-96 py-4 md:hidden"
+		>
+			{navLinks.map((link) => (
+				<div className="px-4 py-2" key={link.to}>
+					<Link to={link.to}>{link.label}</Link>
+				</div>
+			))}
+			<div className="px-4 pt-2 pb-1">
+				<ThemeToggle className="w-full" />
+			</div>
+		</MotionDiv>
+	);
 }
 
 export default memo(MotionWrapper);

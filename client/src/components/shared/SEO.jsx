@@ -12,31 +12,31 @@ import React, { useEffect } from "react";
  * @param {string} [props.keywords] The keywords for the page to be set in the meta tag.
  */
 export function SEO({ title, description, keywords }) {
-  useEffect(() => {
-    if (title) {
-      document.title = `${title} | Digital Detox Assistant`;
-    }
+	useEffect(() => {
+		if (title) {
+			document.title = `${title} | Digital Detox Assistant`;
+		}
 
-    if (description) {
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement("meta");
-        metaDescription.name = "description";
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.content = description;
-    }
+		if (description) {
+			let metaDescription = document.querySelector('meta[name="description"]');
+			if (!metaDescription) {
+				metaDescription = document.createElement("meta");
+				metaDescription.name = "description";
+				document.head.appendChild(metaDescription);
+			}
+			metaDescription.content = description;
+		}
 
-    if (keywords) {
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement("meta");
-        metaKeywords.name = "keywords";
-        document.head.appendChild(metaKeywords);
-      }
-      metaKeywords.content = keywords;
-    }
-  }, [title, description, keywords]);
+		if (keywords) {
+			let metaKeywords = document.querySelector('meta[name="keywords"]');
+			if (!metaKeywords) {
+				metaKeywords = document.createElement("meta");
+				metaKeywords.name = "keywords";
+				document.head.appendChild(metaKeywords);
+			}
+			metaKeywords.content = keywords;
+		}
+	}, [title, description, keywords]);
 
-  return null;
+	return null;
 }

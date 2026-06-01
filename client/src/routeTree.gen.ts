@@ -8,154 +8,154 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
-import { Route as infoIndexRouteImport } from './routes/(info)/index'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as infoIndexRouteImport } from "./routes/(info)/index";
+import { Route as DashboardIndexRouteImport } from "./routes/dashboard/index";
 
-const DashboardRouteLazyRouteImport = createFileRoute('/dashboard')()
-const infoRouteLazyRouteImport = createFileRoute('/(info)')()
-const infoAboutIndexLazyRouteImport = createFileRoute('/(info)/about/')()
+const DashboardRouteLazyRouteImport = createFileRoute("/dashboard")();
+const infoRouteLazyRouteImport = createFileRoute("/(info)")();
+const infoAboutIndexLazyRouteImport = createFileRoute("/(info)/about/")();
 
 const DashboardRouteLazyRoute = DashboardRouteLazyRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
+	id: "/dashboard",
+	path: "/dashboard",
+	getParentRoute: () => rootRouteImport,
 } as any).lazy(() =>
-  import('./routes/dashboard/route.lazy').then((d) => d.Route),
-)
+	import("./routes/dashboard/route.lazy").then((d) => d.Route),
+);
 const infoRouteLazyRoute = infoRouteLazyRouteImport
-  .update({
-    id: '/(info)',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-  .lazy(() => import('./routes/(info)/route.lazy').then((d) => d.Route))
+	.update({
+		id: "/(info)",
+		getParentRoute: () => rootRouteImport,
+	} as any)
+	.lazy(() => import("./routes/(info)/route.lazy").then((d) => d.Route));
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRouteLazyRoute,
-} as any)
+	id: "/",
+	path: "/",
+	getParentRoute: () => DashboardRouteLazyRoute,
+} as any);
 const infoIndexRoute = infoIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => infoRouteLazyRoute,
-} as any)
+	id: "/",
+	path: "/",
+	getParentRoute: () => infoRouteLazyRoute,
+} as any);
 const infoAboutIndexLazyRoute = infoAboutIndexLazyRouteImport
-  .update({
-    id: '/about/',
-    path: '/about/',
-    getParentRoute: () => infoRouteLazyRoute,
-  } as any)
-  .lazy(() => import('./routes/(info)/about/index.lazy').then((d) => d.Route))
+	.update({
+		id: "/about/",
+		path: "/about/",
+		getParentRoute: () => infoRouteLazyRoute,
+	} as any)
+	.lazy(() => import("./routes/(info)/about/index.lazy").then((d) => d.Route));
 
 export interface FileRoutesByFullPath {
-  '/dashboard': typeof DashboardRouteLazyRouteWithChildren
-  '/': typeof infoIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
-  '/about/': typeof infoAboutIndexLazyRoute
+	"/dashboard": typeof DashboardRouteLazyRouteWithChildren;
+	"/": typeof infoIndexRoute;
+	"/dashboard/": typeof DashboardIndexRoute;
+	"/about/": typeof infoAboutIndexLazyRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof infoIndexRoute
-  '/dashboard': typeof DashboardIndexRoute
-  '/about': typeof infoAboutIndexLazyRoute
+	"/": typeof infoIndexRoute;
+	"/dashboard": typeof DashboardIndexRoute;
+	"/about": typeof infoAboutIndexLazyRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/(info)': typeof infoRouteLazyRouteWithChildren
-  '/dashboard': typeof DashboardRouteLazyRouteWithChildren
-  '/(info)/': typeof infoIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
-  '/(info)/about/': typeof infoAboutIndexLazyRoute
+	__root__: typeof rootRouteImport;
+	"/(info)": typeof infoRouteLazyRouteWithChildren;
+	"/dashboard": typeof DashboardRouteLazyRouteWithChildren;
+	"/(info)/": typeof infoIndexRoute;
+	"/dashboard/": typeof DashboardIndexRoute;
+	"/(info)/about/": typeof infoAboutIndexLazyRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/dashboard' | '/' | '/dashboard/' | '/about/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/about'
-  id:
-    | '__root__'
-    | '/(info)'
-    | '/dashboard'
-    | '/(info)/'
-    | '/dashboard/'
-    | '/(info)/about/'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath;
+	fullPaths: "/dashboard" | "/" | "/dashboard/" | "/about/";
+	fileRoutesByTo: FileRoutesByTo;
+	to: "/" | "/dashboard" | "/about";
+	id:
+		| "__root__"
+		| "/(info)"
+		| "/dashboard"
+		| "/(info)/"
+		| "/dashboard/"
+		| "/(info)/about/";
+	fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  infoRouteLazyRoute: typeof infoRouteLazyRouteWithChildren
-  DashboardRouteLazyRoute: typeof DashboardRouteLazyRouteWithChildren
+	infoRouteLazyRoute: typeof infoRouteLazyRouteWithChildren;
+	DashboardRouteLazyRoute: typeof DashboardRouteLazyRouteWithChildren;
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(info)': {
-      id: '/(info)'
-      path: '/'
-      fullPath: ''
-      preLoaderRoute: typeof infoRouteLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRouteLazyRoute
-    }
-    '/(info)/': {
-      id: '/(info)/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof infoIndexRouteImport
-      parentRoute: typeof infoRouteLazyRoute
-    }
-    '/(info)/about/': {
-      id: '/(info)/about/'
-      path: '/about'
-      fullPath: '/about/'
-      preLoaderRoute: typeof infoAboutIndexLazyRouteImport
-      parentRoute: typeof infoRouteLazyRoute
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/dashboard": {
+			id: "/dashboard";
+			path: "/dashboard";
+			fullPath: "/dashboard";
+			preLoaderRoute: typeof DashboardRouteLazyRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/(info)": {
+			id: "/(info)";
+			path: "/";
+			fullPath: "";
+			preLoaderRoute: typeof infoRouteLazyRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/dashboard/": {
+			id: "/dashboard/";
+			path: "/";
+			fullPath: "/dashboard/";
+			preLoaderRoute: typeof DashboardIndexRouteImport;
+			parentRoute: typeof DashboardRouteLazyRoute;
+		};
+		"/(info)/": {
+			id: "/(info)/";
+			path: "/";
+			fullPath: "/";
+			preLoaderRoute: typeof infoIndexRouteImport;
+			parentRoute: typeof infoRouteLazyRoute;
+		};
+		"/(info)/about/": {
+			id: "/(info)/about/";
+			path: "/about";
+			fullPath: "/about/";
+			preLoaderRoute: typeof infoAboutIndexLazyRouteImport;
+			parentRoute: typeof infoRouteLazyRoute;
+		};
+	}
 }
 
 interface infoRouteLazyRouteChildren {
-  infoIndexRoute: typeof infoIndexRoute
-  infoAboutIndexLazyRoute: typeof infoAboutIndexLazyRoute
+	infoIndexRoute: typeof infoIndexRoute;
+	infoAboutIndexLazyRoute: typeof infoAboutIndexLazyRoute;
 }
 
 const infoRouteLazyRouteChildren: infoRouteLazyRouteChildren = {
-  infoIndexRoute: infoIndexRoute,
-  infoAboutIndexLazyRoute: infoAboutIndexLazyRoute,
-}
+	infoIndexRoute: infoIndexRoute,
+	infoAboutIndexLazyRoute: infoAboutIndexLazyRoute,
+};
 
 const infoRouteLazyRouteWithChildren = infoRouteLazyRoute._addFileChildren(
-  infoRouteLazyRouteChildren,
-)
+	infoRouteLazyRouteChildren,
+);
 
 interface DashboardRouteLazyRouteChildren {
-  DashboardIndexRoute: typeof DashboardIndexRoute
+	DashboardIndexRoute: typeof DashboardIndexRoute;
 }
 
 const DashboardRouteLazyRouteChildren: DashboardRouteLazyRouteChildren = {
-  DashboardIndexRoute: DashboardIndexRoute,
-}
+	DashboardIndexRoute: DashboardIndexRoute,
+};
 
 const DashboardRouteLazyRouteWithChildren =
-  DashboardRouteLazyRoute._addFileChildren(DashboardRouteLazyRouteChildren)
+	DashboardRouteLazyRoute._addFileChildren(DashboardRouteLazyRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
-  infoRouteLazyRoute: infoRouteLazyRouteWithChildren,
-  DashboardRouteLazyRoute: DashboardRouteLazyRouteWithChildren,
-}
+	infoRouteLazyRoute: infoRouteLazyRouteWithChildren,
+	DashboardRouteLazyRoute: DashboardRouteLazyRouteWithChildren,
+};
 export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+	._addFileChildren(rootRouteChildren)
+	._addFileTypes<FileRouteTypes>();

@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 /**
  * @param {Object} props
@@ -7,7 +7,7 @@ import React from "react";
  * @returns {JSX.Element}
  */
 const Gap = ({ className }) => {
-  return <div className={cn("w-full", className)}></div>;
+	return <div className={cn("w-full", className)}></div>;
 };
 
 export default Gap;

@@ -30,66 +30,66 @@ const BLOCK_HTML = `
 
 // ===== HELPER =====
 function alreadyBlocked() {
-  return document.documentElement.innerHTML.includes(BLOCK_TEXT);
+	return document.documentElement.innerHTML.includes(BLOCK_TEXT);
 }
 
 function isBlocked(hostname, blockedSites) {
-  return blockedSites.some((d) => {
-    if (!d || !d.includes(".")) return false;
-    return hostname === d || hostname.endsWith("." + d);
-  });
+	return blockedSites.some((d) => {
+		if (!d || !d.includes(".")) return false;
+		return hostname === d || hostname.endsWith("." + d);
+	});
 }
 
 function blockPage() {
-  if (alreadyBlocked()) return;
+	if (alreadyBlocked()) return;
 
-  try {
-    window.stop();
-  } catch {}
+	try {
+		window.stop();
+	} catch {}
 
-  try {
-    document.documentElement.innerHTML = BLOCK_HTML;
-  } catch {}
+	try {
+		document.documentElement.innerHTML = BLOCK_HTML;
+	} catch {}
 }
 
 (async () => {
-  const { blockedSites = [] } = await chrome.storage.local.get("blockedSites");
-  const hostname = location.hostname;
+	const { blockedSites = [] } = await chrome.storage.local.get("blockedSites");
+	const hostname = location.hostname;
 
-  if (!isBlocked(hostname, blockedSites)) return;
+	if (!isBlocked(hostname, blockedSites)) return;
 
-  // ===== MULTI-LAYER DEFENSE =====
-  blockPage();
-  setTimeout(blockPage, 0);
-  setTimeout(blockPage, 50);
-  setTimeout(blockPage, 250);
+	// ===== MULTI-LAYER DEFENSE =====
+	blockPage();
+	setTimeout(blockPage, 0);
+	setTimeout(blockPage, 50);
+	setTimeout(blockPage, 250);
 
-  // ===== SPA DEFENSE =====
-  const observer = new MutationObserver(() => {
-    if (!alreadyBlocked()) {
-      blockPage();
-    }
-  });
+	// ===== SPA DEFENSE =====
+	const observer = new MutationObserver(() => {
+		if (!alreadyBlocked()) {
+			blockPage();
+		}
+	});
 
-  try {
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true,
-    });
-  } catch {}
+	try {
+		observer.observe(document.documentElement, {
+			childList: true,
+			subtree: true,
+		});
+	} catch {}
 
-  // ===== NETWORK KILL SWITCH =====
-  try {
-    Object.defineProperty(window, "fetch", {
-      value: () => new Promise(() => {}),
-    });
+	// ===== NETWORK KILL SWITCH =====
+	try {
+		Object.defineProperty(window, "fetch", {
+			value: () => new Promise(() => {}),
+		});
 
-    Object.defineProperty(window, "XMLHttpRequest", {
-      value: function () {},
-    });
+		Object.defineProperty(window, "XMLHttpRequest", {
+			value: () => {},
+		});
 
-    Object.defineProperty(navigator, "sendBeacon", {
-      value: () => false,
-    });
-  } catch {}
+		Object.defineProperty(navigator, "sendBeacon", {
+			value: () => false,
+		});
+	} catch {}
 })();
