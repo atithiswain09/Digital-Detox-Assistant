@@ -23,7 +23,7 @@ const signUp = async (req, res) => {
     const accessToken = jwt.sign(
       { userId: newUser._id, email: newUser.email },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1d" },
+      { expiresIn: "15m" },
     );
 
     const refreshToken = jwt.sign(
@@ -38,18 +38,19 @@ const signUp = async (req, res) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       sameSite: "strict",
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     return res.status(201).json({
       success: true,
       message: "User created successfully",
+      accessToken,
       user: {
         _id: newUser._id,
         username: newUser.username,
@@ -103,7 +104,19 @@ const login = async (req, res) => {
       { expiresIn: "7d" },
     );
 
-    // 6. Store refresh token in cookie
+    // Update refresh token in DB
+    existingUser.refreshToken = refreshToken;
+    await existingUser.save();
+
+    // 6. Store access token in cookie
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: false,
+      maxAge: 15 * 60 * 1000, // 15 minutes
+    });
+
+    // 7. Store refresh token in cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       sameSite: "strict",
@@ -111,7 +124,7 @@ const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
-    // 7. Send access token
+    // 8. Send response
     return res.status(200).json({
       success: true,
       message: "Login successful",
