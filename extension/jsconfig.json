@@ -1,8 +1,8 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "types": ["chrome"]
-  },
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"types": ["chrome"]
+	},
+	"exclude": ["node_modules"]
 }

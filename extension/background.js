@@ -2,11 +2,11 @@ let currentSite = null;
 let startTime = null;
 
 const DEFAULT_BLOCKED = [
-  "x.com",
-  "facebook.com",
-  "twitter.com",
-  "instagram.com",
-  "youtube.com",
+	"x.com",
+	"facebook.com",
+	"twitter.com",
+	"instagram.com",
+	"youtube.com",
 ];
 
 chrome.runtime.onInstalled.addListener(async () => {
