@@ -1,5 +1,3 @@
-ignoredBuiltDependencies:
-  - msw
-
-onlyBuiltDependencies:
-  - esbuild
+allowBuilds:
+  esbuild: true
+  msw: true
