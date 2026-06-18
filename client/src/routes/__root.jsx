@@ -1,17 +1,11 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import React, { Suspense } from "react";
+import React from "react";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
 import { SEO } from "@/components/shared/SEO";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { NotFoundError } from "@/features/errors/not-found-error";
-import Footer from "@/pages/home/Footer";
-
-const Navbar = React.lazy(() => import("@/components/layout/navbar"));
-const GridBackground = React.lazy(
-	() => import("@/components/shared/GridBackground"),
-);
 
 export const Route = createRootRoute({
 	component: RootComponent,
